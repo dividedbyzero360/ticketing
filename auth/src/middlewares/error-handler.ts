@@ -1,9 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import { RequestValidationError } from "../errors/request-validation-error";
-import { DatabaseConnectionError } from "../errors/database-connecion-error";
-import { CustomError } from "../errors/custom-error";
+import { Request, Response, NextFunction } from 'express';
+import { CustomError } from '../errors/custom-error';
 
-export const errorHandler = (
+export const errorHandler = async (
   err: Error,
   req: Request,
   res: Response,
@@ -13,5 +11,5 @@ export const errorHandler = (
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
 
-  res.status(400).send({ errors: [{ message: "Something went wrong" }] });
+  res.status(400).send({ errors: [{ message: 'Something went wrong' }] });
 };
