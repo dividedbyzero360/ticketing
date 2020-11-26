@@ -15,11 +15,11 @@ beforeAll(async () => {
 beforeEach(async function () {
   let collections = await mongoose.connection.db.collections();
   for (let collection of collections) {
-    collection.deleteMany({});
+    await collection.deleteMany({});
   }
 });
 
 afterAll(async () => {
-  mongoose.connection.close();
   await mongod.stop();
+  mongoose.connection.close();
 });
