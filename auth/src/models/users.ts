@@ -7,7 +7,7 @@ interface UserAttr {
   password: string;
 }
 
-//An interface that describes the properties taht a User Model has
+//An interface that describes the properties that a User Model has
 interface UserModel extends mongoose.Model<UserDoc> {
   build(attrs: UserAttr): UserDoc;
 }
