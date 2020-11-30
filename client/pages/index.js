@@ -1,9 +1,22 @@
 import axios from 'axios';
+import buildClient from '../api/build-client';
 
 const LandingPage = ({ currentUser }) => {
-  return <h1>Hello World</h1>;
+  console.log('Landing page');
+  return currentUser ? (
+    <h1>You're signed in</h1>
+  ) : (
+    <h1>You're not signed in</h1>
+  );
 };
 
+LandingPage.getInitialProps = async (context) => {
+  const client = buildClient(context);
+  const { data } = await client.get('/api/users/currentuser');
+  return data;
+};
+
+/*  Keeping this deadcode for learning purpose
 // This getIntialProps won't work if we have a getInitialProps in the _app.js page
 // This method is mostly called from next.js server but in one particular scenario
 //(When we came to this page by clicking on an url while on the app) it is called from the browser
@@ -29,5 +42,6 @@ LandingPage.getInitialProps = async () => {
     return data;
   }
 };
+*/
 
 export default LandingPage;
