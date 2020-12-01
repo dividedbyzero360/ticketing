@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 import 'express-async-errors';
 import { body } from 'express-validator';
-import { BadRequestError } from '../errors/bad-request-error';
-import { validateRequest } from '../middlewares/validate-request';
+import { BadRequestError, validateRequest } from '@walam/common';
 import { User } from '../models/users';
 import { PasswordManager } from '../services/password-manager';
 import jwt from 'jsonwebtoken';
