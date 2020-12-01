@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     toJSON: {
-      transform(doc, ret) {
+      transform(doc: any, ret: any) {
         ret.id = ret._id;
         delete ret._id;
         delete ret.password;
@@ -47,12 +47,11 @@ userSchema.pre('save', async function (done) {
     const hashed = await PasswordManager.toHash(this.get('password'));
     this.set('password', hashed);
   }
-  done();
 });
 
-userSchema.statics.build = (attrs: UserAttr) => {
+userSchema.static('build', (attrs: UserAttr) => {
   return new User(attrs);
-};
+});
 
 const User = mongoose.model<UserDoc, UserModel>('User', userSchema);
 
