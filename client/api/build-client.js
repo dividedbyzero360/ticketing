@@ -14,4 +14,4 @@ const buildClient = ({ req }) => {
   }
 };
 
-export default buildClient();
+export default buildClient;
